@@ -5,3 +5,5 @@
 # Here, I am adding a new line to test a commit and push
 
 # Commit and push successful. Next, fetch will be tested for this new line.
+
+# Found that fetch needs to be followed by merge since I am working with a remote repository. pull does this simultaneously, but I should be wary of messy branch merging.
