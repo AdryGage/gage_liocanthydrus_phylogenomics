@@ -2,7 +2,7 @@
 Here, we will use various scripts to take short read sequences (Illumina) for assembling genome contigs, and then a scaffold. This guide builds off of S. Baca's workflow with modifications by A. Gage.
 
 ## 0 - Concatenating reads
-Multiple runs may be performed to obtain sequence data, which will result in multiple files. In our workflow, we want to merge these files into a single merged file per specimen.
+Multiple runs may be performed to obtain sequence data, which will result in multiple files. Additionally, sequencing is typically performed bidirectionally, producing "forward" and "reverse" reads. In our workflow, we want to merge these files into a single merged file per direction per specimen.
 
 ### Organizing your files
 First, change your directory to the location of your read files. This should be where all of your raw-data straight from sequencing should be.
@@ -57,3 +57,30 @@ It may be worth checking the quality of your merged reads before cleaning your d
 You can check the output files to get a preliminary report.
 
 ## 2 - FastP Processing
+Now, we will run our merged sequence data through FastP to trim the adapters. In this workflow, we are running FastP from a Conda environment, which can be set up like this:
+
+    conda create -p /work/adry/conda/envs/fastp
+    conda install bioconda::fastp
+
+Next, we will run a script that loops FastP to clean each individual merged FastQ file. **Check your file names:** if you followed the code and scripts in this guide so far, you should have a single "R1" and "R2" `*merged.fastq.gz` file per specimen. If you don't, go back and rename them accordingly.
+
+Let's run the `2_fastp.sh` script, which does this:
+
+    module load conda
+
+    conda init
+    source activate /work/adry/conda/envs/fastp
+
+    for i in *R1_merged.fastq.gz; 
+    do TRIMNAME1=`echo $i | sed 's/.fastq.gz/.clean.fastq.gz/g'`;
+    TRIMNAME2=`echo $TRIMNAME1 | sed 's/R1/R2/g'`;
+    REVERSE=`echo $i | sed 's/R1/R2/g'`;
+    UNPAIRED=`echo $TRIMNAME1 | sed 's/clean.fastq.gz/clean.singleton.fastq.gz/g'`;
+    UNPAIRED2=`echo $TRIMNAME1 | sed 's/clean.fastq.gz/clean.singleton.fastq.gz/g'`;
+
+    fastp -w 8 -i $i -I $REVERSE -o clean_reads/$TRIMNAME1 -O clean_reads/$TRIMNAME2 --unpaired1 clean_reads/$UNPAIRED --unpaired2 clean_reads/$UNPAIRED2 -q 20 -l 30 -w 6 --detect_adapter_for_pe -g;
+    done 
+
+As is, this will run FastP to clean the reads using typical adapter sequences, but you can use `--adapter_fasta adapter_list.fasta` to specify adapter sequences. Additionally, `--overrepresentation_analysis` can be used for garnering characteristics of the genome, but we are skipping it here.
+
+## 3 - Post-Trim FastQC ("FastQ Quality Check")
