@@ -1,22 +1,19 @@
+#!/bin/bash
+#SBATCH -J adry_full_cat
+#SBATCH -N 1
+#SBATCH -n 64
+#SBATCH -c 1
+#SBATCH -t 12:00:00
+#SBATCH -p workq
+#SBATCH -e full_cat_%j.err
+#SBATCH -o full_cat_%j.log
+#SBATCH --mail-type=END,FAIL
+
 ### To merge reads from different runs. 
+### See genome_assembly_guide.md
 
-## Step 1 ##
-
-# Get a list of your samples to make an array. 
-# You can use an excel spreadsheet or edit strings in the command line:
-
-cd <directory with all of your read files> 
-
-#the file names should look something like this; 
-
-BLTE39_S89_R1_001.fastq.gz
-BLTE39_S89_R1_002.fastq.gz
-BLTE39_S89_R2_001.fastq.gz
-BLTE39_S89_R2_002.fastq.gz
-
-#so you can use the name structure to list with ls, pipe | to the cut command | filter for unique occurances and print to a list.
-
-ls *.gz | cut -d "_" -f1 | sort -u >> sample.list
+#before running, sample.list must be created for the directory by running the following:
+#ls *.gz | cut -d "_" -f1 | sort -u >> sample.list
 
 # ls = list
 # | = pipe, or send output of previous opteration to next operation.
@@ -28,24 +25,16 @@ ls *.gz | cut -d "_" -f1 | sort -u >> sample.list
 # sort -u = sort and exclude (-u) duplicates 
 # >> amend output to file = sample.list
 
+#check sample.list for accuracy before proceeding
 
-### Step 2 ###
-# set an array and catenate the files
+#create array from sample.list file
 array=$(cat sample.list) 
 
-#check array
-echo "$array"
-
-#if it lists only one sample try this:
-echo "${array[@]}"
-
-#once you get a full printout of the list of samples do
-
-for i in $array;  #or "${array[@]}"
+#catenate based on array
+for i in $array;
 do cat "$i"*R1*fastq.gz >> "$i"_R1_merged.fastq.gz; 
 cat "$i"*R2*fastq.gz >> "$i"_R2_merged.fastq.gz; 
 done
 
 ## That should do it. Set the array to one or two samples first, then try it. 
-
  
