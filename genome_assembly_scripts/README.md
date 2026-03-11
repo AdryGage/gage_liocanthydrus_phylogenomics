@@ -127,6 +127,8 @@ FastQC will then generate multiple output files - you can open the HTML files to
 **We are skipping this step**
 
 ## 8 - SPAdes Genome Assembly
+**NOTE: As SPAdes uses increasingly larger k-mer sizes, more RAM will be required. Read https://ablab.github.io/spades/datatypes.html and plan your HPC usage accordingly. You may also specify shorter k-mer sizes, but this is not advisable.**
+
 Now, we are ready to assemble our genome scaffolds via SPAdes. Again, we are using a Conda environment to achieve this.
 
     conda create -p /work/adry/conda/envs/spades
