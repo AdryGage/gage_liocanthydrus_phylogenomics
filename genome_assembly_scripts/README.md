@@ -45,7 +45,7 @@ From this array, we can now perform a loop to concatenate multiple read files in
 
 It is good practice to test this workflow for one or two samples before proceeding with the rest of your data.
 
-## 1 - Pre-FastQC (Optional)
+## 1 - Pre-Trim FastQC (Optional)
 **We are skipping this step**
 
 It may be worth checking the quality of your merged reads before cleaning your data (removing Illumina adapters, etc.). This can be achieved by running FastQC installed through a Conda environment via `1_optional_Fastqc.sh`, which does the following:
@@ -83,4 +83,104 @@ Let's run the `2_fastp.sh` script, which does this:
 
 As is, this will run FastP to clean the reads using typical adapter sequences, but you can use `--adapter_fasta adapter_list.fasta` to specify adapter sequences. Additionally, `--overrepresentation_analysis` can be used for garnering characteristics of the genome, but we are skipping it here.
 
-## 3 - Post-Trim FastQC ("FastQ Quality Check")
+Arguments:
+
+    -q      --qualified_quality_phred (default is 15)
+    -l      --length_required (default is 15)
+    -w      --thread (multi-threading, default is 3)
+    -g      --trim_poly_g (forces polyG tail trimming)
+    -2      --detect_adapter_for_pe (enable paired-end detection to produce ultra-clean data)
+
+You will now have a single `*.clean.fastq.gz file` per sample in a newly created `clean_reads/` directory.
+
+## 3 - Post-Trim FastQC ("FastQ Quality Control")
+To get a quick check of our merged and cleaned reads, we will run FastQC to inspect the quality. FastQC can generate HTML reports, which is how we will be using it. Recall that FastQC was mentioned in step 1, which we skipped previously.
+
+We run FastQC as a Conda environment, which is set up like this:
+
+    conda create -p /work/adry/conda/envs/fastqc
+    conda install bioconda::fastqc
+
+Then, we run 3_Fastqc.sh:
+
+    module load conda
+
+    conda init
+    source activate /work/adry/conda/envs/fastqc
+
+    for i in ./clean_reads/*clean*.gz; do fastqc $i; done
+
+**NOTE: Check that your file names are consistent! Otherwise, the script will not work or will need to be edited.**
+
+FastQC will then generate multiple output files - you can open the HTML files to quickly view the reports.
+
+## 4 - Jellyfish (Optional)
+**We are skipping this step**
+
+## 5 - Jellyfish Histo (Optional)
+**We are skipping this step**
+
+## 6 - Genomescope (Optional)
+**We are skipping this step**
+
+## 7 - BBDuk filter (Optional)
+**We are skipping this step**
+
+## 8 - SPAdes Genome Assembly
+Now, we are ready to assemble our genome scaffolds via SPAdes. Again, we are using a Conda environment to achieve this.
+
+    conda create -p /work/adry/conda/envs/spades
+    conda install bioconda::spades
+
+Start by changing to your directory that contains your merged/cleaned files (FastP output). For each clean fastq file, we will need to run an individual script. Therefore, we will create multiple SPAdes scripts using a template. This can be done by reusing the `sample.list` file we created from before. From that, we can create an array and run a loop to create each corresponding SPAdes script from `8_newSPAdes_template.sh`. This template is as follows:
+
+    #!/bin/bash
+    #SBATCH -J SPAdes_INDIV      # Job name
+    #SBATCH -N 1
+    #SBATCH -n 64
+    #SBATCH -c 1
+    #SBATCH -t 36:00:00
+    #SBATCH -p bigmem
+    #SBATCH -e ./error_out/_8_SPAdes_INDIV_%j.err        # Error log
+    #SBATCH -o ./log_out/_8_SPAdes_INDIV_%j.log     # Standard output
+    #SBATCH --mail-type=ALL
+    #SBATCH --mail-user=adry.gage@lsu.edu
+
+    module load conda
+    module load java
+
+    conda init
+    source activate /work/adry/conda/envs/SPAdes
+
+    ###do an assembly using the adapter-filtered data as input; modify names and paths as needed
+    ###H3re set to run with reads all in same directory: Can also modify to make directories for each samples' reads if need be
+
+    spades.py -1 ./INDIV_R1_merged.clean.fastq.gz -2 ./INDIV_R2_merged.clean.fastq.gz -o ./assemblies/INDIV -t 28 -m 2048
+
+This template should be saved in your current directory, from which we will then run:
+
+    array=`cat sample.list`
+
+Check your array if needed:
+
+    echo $array  #depending on the list format you may have to use this synax: echo "${array[@]}"   
+
+Then generate multiple scripts from the `8_new_SPAdes_template.sh` template (this should be in your current directory):
+
+    for i in $array; do awk '{gsub("INDIV","'$i'",$0); print($0);}' 8_new_SPAdes_template.sh > SPADES_"$i".sh; done  
+
+Here, we are replacing INDIV from the template with the names listed in `sample.list`. **If your naming convention has not been consistent with this guide, this will not work.**
+
+Once you have generated all of your SPAdes scripts, you can then run this loop command to submit all of them at once:
+
+    for i in $array; do sbatch SPADES_"$i".sh; done
+
+If your SPAdes jobs get interrupted (i.e. runtime limits), you can use the `--continue` arguement to an already existing SPAdes assembly output directory:
+
+    spades.py --continue  -o ./assemblies/INDIV
+
+Additional information for using SPAdes:
+
+    USAGE: -1, -2 = <cleaned, (optionally filtered with bbduk) forward and reverse read files>; -s = <cleaned singleton read file>; -o <output directory> (doesn't have to me pre-made); -t <threads>
+
+## 9 - Genome Quality Assessment (QUAST)
