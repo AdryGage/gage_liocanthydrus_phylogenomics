@@ -211,3 +211,11 @@ Otherwise, edit the `9_Quast.sh` script or `sample.list` as necessary. In our us
     -
 
 In essence, QUAST will read the scaffolds and contigs for each sample and generate a report. The output directory will contain multiple files - you can open the `report.pdf` file to get a quick overview. The `report.html` and `icarus.html` files will give more comprehensive details, but they may depend on files from the `basic_stats` and `icarus_viewers` sub-directories - it is best to download the entire QUAST output directory and view directly on your local machine to avoid issues.
+
+### *Special Installation Instructions*
+
+If you install QUAST through Bioconda, GeneMark will be excluded due to distribution licensing limitations and must be manually added. `quast_libs/genemark` from https://github.com/ablab/quast can be downloaded and added to `<conda_environment_containing_QUAST_installation>/lib/phython<ver>/site-packages/quast_libs`.
+
+In my usage, I need to edit  the `quast_libs/run_busco.py` file to use the odb12 databases, as found here: https://busco-archive.ezlab.org/data/lineages/
+
+Additionally, for *Liocanthydrus*, it may be appropriate to use a Coleoptera specific database.
