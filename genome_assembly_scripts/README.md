@@ -117,14 +117,18 @@ FastQC will then generate multiple output files - you can open the HTML files to
 ## 4 - Jellyfish (Optional)
 **We are skipping this step**
 
+
 ## 5 - Jellyfish Histo (Optional)
 **We are skipping this step**
+
 
 ## 6 - Genomescope (Optional)
 **We are skipping this step**
 
+
 ## 7 - BBDuk filter (Optional)
 **We are skipping this step**
+
 
 ## 8 - SPAdes Genome Assembly
 **NOTE: As SPAdes uses increasingly larger k-mer sizes, more RAM will be required. Read https://ablab.github.io/spades/datatypes.html and plan your HPC usage accordingly. You may also specify shorter k-mer sizes, but this is not advisable.**
@@ -136,18 +140,6 @@ Now, we are ready to assemble our genome scaffolds via SPAdes. Again, we are usi
 
 Start by changing to your directory that contains your merged/cleaned files (FastP output). For each clean fastq file, we will need to run an individual script. Therefore, we will create multiple SPAdes scripts using a template. This can be done by reusing the `sample.list` file we created from before. From that, we can create an array and run a loop to create each corresponding SPAdes script from `8_newSPAdes_template.sh`. This template is as follows:
 
-    #!/bin/bash
-    #SBATCH -J SPAdes_INDIV      # Job name
-    #SBATCH -N 1
-    #SBATCH -n 64
-    #SBATCH -c 1
-    #SBATCH -t 36:00:00
-    #SBATCH -p bigmem
-    #SBATCH -e ./error_out/_8_SPAdes_INDIV_%j.err        # Error log
-    #SBATCH -o ./log_out/_8_SPAdes_INDIV_%j.log     # Standard output
-    #SBATCH --mail-type=ALL
-    #SBATCH --mail-user=adry.gage@lsu.edu
-
     module load conda
     module load java
 
@@ -155,7 +147,7 @@ Start by changing to your directory that contains your merged/cleaned files (Fas
     source activate /work/adry/conda/envs/SPAdes
 
     ###do an assembly using the adapter-filtered data as input; modify names and paths as needed
-    ###H3re set to run with reads all in same directory: Can also modify to make directories for each samples' reads if need be
+    ###Here set to run with reads all in same directory: Can also modify to make directories for each samples' reads if need be
 
     spades.py -1 ./INDIV_R1_merged.clean.fastq.gz -2 ./INDIV_R2_merged.clean.fastq.gz -o ./assemblies/INDIV -t 28 -m 2048
 
@@ -186,3 +178,30 @@ Additional information for using SPAdes:
     USAGE: -1, -2 = <cleaned, (optionally filtered with bbduk) forward and reverse read files>; -s = <cleaned singleton read file>; -o <output directory> (doesn't have to me pre-made); -t <threads>
 
 ## 9 - Genome Quality Assessment (QUAST)
+Now that we have our genome assemblies, we will want to assess their qualities usint QUAST (https://github.com/ablab/quast). The standard usage for QUAST is as follows:
+
+    quast	./assemblies/INDIV/scaffolds.fasta \
+	./assemblies/INDIV/contigs.fasta \
+	-o INDIV_quast_out \
+	#-t 4
+
+where `INDIV` should be your specimen ID from previous steps, `-o` specifies the output directory (in this case, in the same working directory). You can view the full list of QUAST arguments here: https://quast.sourceforge.net/docs/manual.html
+
+Depending on how you organized your genome assemblies, you can either run the command above one-by-one for each specimen, or, if you have not ommitted any samples, experienced no errors, and followed this guide to a tee, you can run it in a loop using the `sample.list` like this:
+
+    module load quast
+    module load java
+    
+    array=$(cat sample.list)
+
+    for INDIV in $array; do
+	quast	./assemblies/"$INDIV"/scaffolds.fasta \
+	./assemblies/"$INDIV"/contigs.fasta \
+	-o "$INDIV"_quast_out \
+    -b  # enables BUSCO - only works on Linux
+    -e  # forces BUSCO to use eukaryotic database
+	#-t 4   # threads, omit to default to 25% CPU usage
+
+Otherwise, edit the `9_Quast.sh` script or `sample.list` as necessary.
+
+In essence, QUAST will read the scaffolds and contigs for each sample and generate a report. The output directory will contain multiple files - you can open the `report.pdf` file to get a quick overview. The `report.html` and `icarus.html` files will give more comprehensive details, but they may depend on files from the `basic_stats` and `icarus_viewers` sub-directories - it is best to download the entire QUAST output directory and view directly on your local machine to avoid issues.
