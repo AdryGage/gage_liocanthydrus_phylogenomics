@@ -202,6 +202,12 @@ Depending on how you organized your genome assemblies, you can either run the co
     -e  # forces BUSCO to use eukaryotic database
 	#-t 4   # threads, omit to default to 25% CPU usage
 
-Otherwise, edit the `9_Quast.sh` script or `sample.list` as necessary.
+Otherwise, edit the `9_Quast.sh` script or `sample.list` as necessary. In our usage, we will want to use the following arguments:
+
+    --large # for genomes > 100 Mbp (runs QUAST-LG). Liocanthydrus genomes are ~250 Mbp.
+    -b  # enables BUSCO search (only works on Linux)
+    -e  # forces BUSCO to use eukaryotic database and gene finding to use GeneMark-ES
+    -f  # enables gene finding (PERFORMANCE WARNING)
+    -
 
 In essence, QUAST will read the scaffolds and contigs for each sample and generate a report. The output directory will contain multiple files - you can open the `report.pdf` file to get a quick overview. The `report.html` and `icarus.html` files will give more comprehensive details, but they may depend on files from the `basic_stats` and `icarus_viewers` sub-directories - it is best to download the entire QUAST output directory and view directly on your local machine to avoid issues.
