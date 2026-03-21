@@ -219,3 +219,32 @@ If you install QUAST through Bioconda, GeneMark will be excluded due to distribu
 In my usage, I need to edit  the `quast_libs/run_busco.py` file to use the odb12 databases, as found here: https://busco-archive.ezlab.org/data/lineages/
 
 Additionally, for *Liocanthydrus*, it may be appropriate to use a Coleoptera specific database.
+
+## 10 - Genome Completeness Assessment (BUSCO)
+***NOTE:** While QUAST has built-in BUSCO functionality, it is broken in the current 5.3.0 version due to reliance on the older V9 OrthoDB, which is no longer publicly available. Therefore, we are running BUSCO directly.*
+
+To assess the completeness of our assembled genomes, we will run BUSCO.
+
+Like other programs, we will create a new Conda environment for BUSCO.
+
+    conda create -p /work/adry/conda/envs/busco_6.0.0
+    conda install bioconda::busco
+
+As we previously did for SPAdes, we can create individual BUSCO scripts for each sample using the sample.list. We'll start with a template script (`10_busco_template.sh`):
+
+    module load conda
+
+    conda init
+    source activate /work/adry/conda/envs/busco_6.0.0
+
+    busco -i /work/adry/processing_room/assemblies/INDIV/contigs.fasta -m genome -o /work/adry/processing_room/assemblies/INDIV/busco/ --auto-lineage --plot /work/adry/processing_room/assemblies/INDIV/busco/ -c 64
+
+Here, INDIV is our familiar placeholder that will get replaced with the sample name. I am running busco with the following parameters:
+
+    -i      # input file - using the contigs.fasta from SPAdes
+    -o      # output directory - I prefer to put this directly into the sample's assembly folder
+    -m      # mode - using genome
+    --auto-lineage  # detects best OrthoDB dataset from input from best phylogenetic match for eukaryotes, archaea, and bacteria. This is particularly important because it will help us diagnose for contamination in our data.
+    -l      # not used here, but this is where you would specify the dataset to use. Run `busco --list-datasets` to see what is available for download.
+    -c      # CPU threads. In BUSCO v6.0.0 installed via BioConda, tBLASTn should no longer have a multithreading issue.
+
