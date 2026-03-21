@@ -16,4 +16,4 @@ module load conda
 conda init
 source activate /work/adry/conda/envs/busco_6.0.0
 
-busco -i /work/adry/processing_room/assemblies/INDIV/contigs.fasta -m genome -o /work/adry/processing_room/assemblies/INDIV/busco/ --auto-lineage --plot /work/adry/processing_room/assemblies/INDIV/busco/ -c 64
+busco -i /work/adry/processing_room/assemblies/INDIV/contigs.fasta -m genome -o INDIV_BUSCO --out_path /work/adry/processing_room/assemblies/INDIV --auto-lineage --plot /work/adry/processing_room/assemblies/INDIV/busco/ -c 64

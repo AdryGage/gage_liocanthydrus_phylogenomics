@@ -237,12 +237,13 @@ As we previously did for SPAdes, we can create individual BUSCO scripts for each
     conda init
     source activate /work/adry/conda/envs/busco_6.0.0
 
-    busco -i /work/adry/processing_room/assemblies/INDIV/contigs.fasta -m genome -o /work/adry/processing_room/assemblies/INDIV/busco/ --auto-lineage --plot /work/adry/processing_room/assemblies/INDIV/busco/ -c 64
+  busco -i /work/adry/processing_room/assemblies/INDIV/contigs.fasta -m genome -o INDIV_BUSCO --out_path /work/adry/processing_room/assemblies/INDIV --auto-lineage --plot /work/adry/processing_room/assemblies/INDIV/busco/ -c 64
 
 Here, INDIV is our familiar placeholder that will get replaced with the sample name. I am running busco with the following parameters:
 
     -i      # input file - using the contigs.fasta from SPAdes
-    -o      # output directory - I prefer to put this directly into the sample's assembly folder
+    -o      # output name
+    --out_path      # output directory - I prefer to put this directly into the sample's assembly folder
     -m      # mode - using genome
     --auto-lineage  # detects best OrthoDB dataset from input from best phylogenetic match for eukaryotes, archaea, and bacteria. This is particularly important because it will help us diagnose for contamination in our data.
     -l      # not used here, but this is where you would specify the dataset to use. Run `busco --list-datasets` to see what is available for download.
