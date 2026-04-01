@@ -2,7 +2,7 @@
 Here, we will use various scripts to take short read sequences (Illumina) for assembling genome contigs, and then a scaffold. This guide builds off of S. Baca's workflow with modifications by A. Gage.
 
 ## 0 - Concatenating reads
-Multiple runs may be performed to obtain sequence data, which will result in multiple files. Additionally, sequencing is typically performed bidirectionally, producing "forward" and "reverse" reads. In our workflow, we want to merge these files into a single merged file per direction per specimen.
+Multiple runs may be performed to obtain sequence data, which will result in multiple files. Additionally, sequencing is typically performed bidirectionally, producing paired-end ("forward" and "reverse") reads. In our workflow, we want to merge these files into a single merged file per direction per specimen.
 
 ### Organizing your files
 First, change your directory to the location of your read files. This should be where all of your raw-data straight from sequencing should be.
