@@ -1,6 +1,9 @@
 # Liocanthydrus Phylogenomics
 A script repository for Adry Gage's phylogenomic workflow on studying *Liocanthydrus*.
 
+![A cartoon drawing depicting the overall workflow of extracting DNA from specimens, processing DNA through Illumina sequencing, assembling genomes, harvesting UCEs, and creating a phylogeny tree.](assets/images/diagrams/from_genomes_to_trees.png)
+> A very "high quality" diagram showing the overall process of taking genomes from *Liocanthydrus* beetles to construct phylogeny trees.
+
 ## Script Usage
 The scripts stored in this repository are designed to work with Louisiana State University's (LSU's) HPC servers, but should work for any Slurm-based system. These scripts depend on many different software applications (credited below), but may call upon outdated versions. If using these scripts for your own analysis, be sure to implement the necessary adjustments to utilize the desired software versions. Otherwise, if you are perhaps focused on reproducibility, take note ensure you have the appropriate software versions installed as described in the scripts.
 
