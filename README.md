@@ -72,7 +72,7 @@ Third party packages & software utilized in this project.
 ### Genome Assembly
 
 #### [FastQC 0.12.1](https://github.com/s-andrews/fastqc)
-Developed by @s-andrews to infer the quality of FastQ files.
+Developed by s-andrews to infer the quality of FastQ files.
 
 #### [FastP 1.0.1](https://github.com/opengene/fastp)
 A quick tool for processing FastQ files - particularly, short reads.
@@ -99,6 +99,6 @@ Assessment tool for evaluating genome assembly completeness.
 ### Phylogeny Construction
 
 #### [PHYLUCE 1.7.3](https://github.com/faircloth-lab/phyluce)
-UCE phylogenomics software developed by @faircloth-lab for use in a variety of applications.
+UCE phylogenomics software developed by faircloth-lab for use in a variety of applications.
 
 >Faircloth BC. 2015. PHYLUCE is a software package for the analysis of conserved genomic loci. Bioinformatics. https://doi.org/10.1093/bioinformatics/btv646.
