@@ -1,22 +1,20 @@
 #!/bin/bash
-#SBATCH -J adry_fastqc
+#SBATCH -J 3_fastqc
+#SBATCH -A allocation
 #SBATCH -N 1
 #SBATCH -n 64
 #SBATCH -c 1
 #SBATCH -t 24:00:00
 #SBATCH -p workq
-#SBATCH -e _3_Fastqc_%j.err
-#SBATCH -o _3_Fastqc_%j.log
-#SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=adry.gage@lsu.edu
+#SBATCH -e ./error_out/_%J_%j.err
+#SBATCH -o ./log_out/_%J_%j.log
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=my@email.com
 
 module load conda
 
 conda init
-#conda create -p /work/adry/conda/envs/XXX
-#conda install bioconda::XXX
-
-source activate /work/adry/conda/envs/fastqc
+source activate ~/.conda/envs/fastqc_0.12.1
 
 #before cleaning
 #for i in ./*.fastq.gz; do fastqc $i; done

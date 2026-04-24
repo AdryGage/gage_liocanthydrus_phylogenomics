@@ -1,20 +1,21 @@
 #!/bin/bash
-#SBATCH -J SPAdes_INDIV      # Job name
+#SBATCH -J 8_SPAdes_INDIV
+#SBATCH -A allocation
 #SBATCH -N 1
 #SBATCH -n 64
 #SBATCH -c 1
 #SBATCH -t 36:00:00
 #SBATCH -p bigmem
-#SBATCH -e ./error_out/_8_SPAdes_INDIV_%j.err        # Error log
-#SBATCH -o ./log_out/_8_SPAdes_INDIV_%j.log     # Standard output
+#SBATCH -e ./error_out/_%J_%j.err
+#SBATCH -o ./log_out/_%J_%j.log
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=adry.gage@lsu.edu
+#SBATCH --mail-user=my@email.com
 
 module load conda
 module load java
 
 conda init
-source activate /work/adry/conda/envs/SPAdes
+source activate ~/.conda/envs/SPAdes_4.2.0
 
 ###do an assembly using the adapter-filtered data as input; modify names and paths as needed
 ###H3re set to run with reads all in same directory: Can also modify to make directories for each samples' reads if need be

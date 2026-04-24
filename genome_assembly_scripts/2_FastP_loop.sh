@@ -1,19 +1,20 @@
 #!/bin/bash
-#SBATCH -J adry_fastp
+#SBATCH -J 2_fastp
+#SBATCH -A allocation
 #SBATCH -N 1
 #SBATCH -n 64
 #SBATCH -c 1
 #SBATCH -t 24:00:00
 #SBATCH -p workq
-#SBATCH -e _2_fastp_%j.err
-#SBATCH -o _2_fastp_%j.log
-#SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=adry.gage@lsu.edu
+#SBATCH -e ./error_out/_%J_%j.err
+#SBATCH -o ./log_out/_%J_%j.log
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=my@email.com
 
 module load conda
 
 conda init
-source activate /work/adry/conda/envs/fastp
+source activate ~/.conda/envs/fastp_1.0.1
 
 for i in *R1_merged.fastq.gz; 
 do TRIMNAME1=`echo $i | sed 's/.fastq.gz/.clean.fastq.gz/g'`;

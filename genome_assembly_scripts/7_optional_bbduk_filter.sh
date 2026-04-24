@@ -1,15 +1,18 @@
 #!/bin/bash
-#SBATCH --job-name=bbduk
-#SBATCH --partition=sixhour
-#SBATCH --nodes=1
-#SBATCH --cpus-per-task=1
-#SBATCH --ntasks-per-node=4
-#SBATCH --time=6:00:00
-#SBATCH --mem=60G
-#SBATCH --mail-user= @gmail.com
-#SBATCH --mail-type=END,FAIL
-#SBATCH -o
-#SBATCH --output=bbduck_%j.log
+#SBATCH -J 7_bbduk
+#SBATCH -A allocation
+#SBATCH -N 1
+#SBATCH -n 64
+#SBATCH -c 1
+#SBATCH -t 24:00:00
+#SBATCH -p workq
+#SBATCH -e ./error_out/_%J_%j.err
+#SBATCH -o ./log_out/_%J_%j.log
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=my@email.com
+
+### THIS IS OUTDATED
+### Need to update
 
 module load java
 

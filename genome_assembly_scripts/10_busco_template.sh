@@ -1,19 +1,19 @@
 #!/bin/bash
-#SBATCH -J busco_INDIV      # Job name
-#SBATCH -A hpc_sbaca_su2
+#SBATCH -J 10_busco_INDIV
+#SBATCH -A allocation
 #SBATCH -N 1
 #SBATCH -n 64
 #SBATCH -c 1
 #SBATCH -t 24:00:00
 #SBATCH -p single
-#SBATCH -e ./error_out/_10_busco_INDIV_%j.err        # Error log
-#SBATCH -o ./log_out/_10_busco_INDIV_%j.log     # Standard output
+#SBATCH -e ./error_out/_%J_%j.err
+#SBATCH -o ./log_out/_%J_%j.log
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=adry.gage@lsu.edu
+#SBATCH --mail-user=my@email.com
 
 module load conda
 
 conda init
-source activate /work/adry/conda/envs/busco_6.0.0
+source activate ~/.conda/envs/busco_6.0.0
 
-busco -i /work/adry/processing_room/assemblies/INDIV/contigs.fasta -m genome -o INDIV_BUSCO --out_path /work/adry/processing_room/assemblies/INDIV --auto-lineage --plot /work/adry/processing_room/assemblies/INDIV/busco/ -c 64
+busco -i ./assemblies/INDIV/contigs.fasta -m genome -o INDIV_BUSCO --out_path ./assemblies/INDIV --auto-lineage --plot ./assemblies/INDIV/busco/ -c 64

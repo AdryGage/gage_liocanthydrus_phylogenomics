@@ -1,16 +1,18 @@
 #!/bin/bash
-#SBATCH -J adry_full_cat
+#SBATCH -J 0_cat
+#SBATCH -A allocation
 #SBATCH -N 1
 #SBATCH -n 64
 #SBATCH -c 1
-#SBATCH -t 12:00:00
+#SBATCH -t 24:00:00
 #SBATCH -p workq
-#SBATCH -e full_cat_%j.err
-#SBATCH -o full_cat_%j.log
-#SBATCH --mail-type=END,FAIL
+#SBATCH -e ./error_out/_%J_%j.err
+#SBATCH -o ./log_out/_%J_%j.log
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=my@email.com
 
 ### To merge reads from different runs. 
-### See genome_assembly_guide.md
+### See https://github.com/AdryGage/gage_liocanthydrus_phylogenomics/blob/main/genome_assembly_scripts/README.md
 
 #before running, sample.list must be created for the directory by running the following:
 #ls *.gz | cut -d "_" -f1 | sort -u >> sample.list

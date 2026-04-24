@@ -1,19 +1,21 @@
 #!/bin/bash
-#SBATCH --job-name=assemble
-#SBATCH --partition=sixhour
-#SBATCH --nodes=1
-#SBATCH --cpus-per-task=1
-#SBATCH --ntasks-per-node=4
-#SBATCH --time=6:00:00
-#SBATCH --mem=40G
-#SBATCH --mail-user= @gmail.com
-#SBATCH --mail-type=END,FAIL
-#SBATCH -o
-#SBATCH --output=quast_%j.log
+#SBATCH -J 9_quast
+#SBATCH -A allocation
+#SBATCH -N 1
+#SBATCH -n 64
+#SBATCH -c 1
+#SBATCH -t 24:00:00
+#SBATCH -p workq
+#SBATCH -e ./error_out/_%J_%j.err
+#SBATCH -o ./log_out/_%J_%j.log
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=my@email.com
 
-module load quast
+module load conda
 module load java
 
+conda init
+source activate ~/.conda/envs/quast_5.3.0
 
 
 

@@ -10,7 +10,7 @@ The scripts stored in this repository are designed to work with Louisiana State 
 This workflow is designed primarily for investigating the phylogenomics of Neotropical aquatic beetles, but it is widely applicable to all insects and, at large, any molecular-based systematic study.
 
 ### LSU HPC Job Submission
-[SuperMike-III](https://www.hpc.lsu.edu/docs/guides.php?system=SuperMike3.) (dubbed 'mike') has 171 nodes, each with 64 CPU cores and 256 GBs of RAM. The Slurm directives are thus specified to make full use of each individual node.
+[SuperMike-III](https://www.hpc.lsu.edu/docs/guides.php?system=SuperMike3.) (dubbed 'mike') has 171 nodes, each with 64 CPU cores and 256 GBs of RAM. The [Slurm directives](https://slurm.schedmd.com/sbatch.html) are thus specified to make full use of each individual node.
 
 All scripts should contain these basic directives:
 
@@ -35,11 +35,11 @@ Time allocation. For LSU's mike, you are limited to 3 days on the `workq` partit
     #SBATCH -p workq
 Specify the server partition you'd like your job to run on. LSU's mike has 3 partitions: `workq` for most jobs, `single` for jobs requiring only a single node, and `bigmem` for jobs require large volumes of RAM. These partitions are identical, except `bigmem` has 2 TB of RAM instead of the standard 256 GBs, and `single` will allow you to specify anywhere from 1-64 CPU cores to be allocated for your job.
 
-    #SBATCH -e ./error_out/_%j.err
-Error log file output. Use %j to copy the job name in the file name, which allows you to quickly find it. You can also specify a path if you'd like your error log file to go into a specific directory. I prefer to add an underscore `_` at the beginning of the file name to help separate it from other documents in my directory.
+    #SBATCH -e ./error_out/_%J_%j.err
+Error log file output. Use %J to copy the job name and %j to copy the job submission number into the the error file name, which allows you to quickly find it. You can also specify a path if you'd like your error log file to go into a specific directory. I prefer to add an underscore `_` at the beginning of the file name to help separate it from other documents in my directory.
 
-    #SBATCH -o ./log_out/_%j.log     
-Log file output. Use %j to copy the job name in the file name, which allows you to quickly find it. You can also specify a path if you'd like your log file to go into a specific directory. I prefer to add an underscore `_` at the beginning of the file name to help separate it from other documents in my directory.
+    #SBATCH -o ./log_out/_%J_%j.log     
+Log file output. Use %J to copy the job name and %j to copy the job submission number into the log file name, which allows you to quickly find it. You can also specify a path if you'd like your log file to go into a specific directory. I prefer to add an underscore `_` at the beginning of the file name to help separate it from other documents in my directory.
 
 
     #SBATCH --mail-type=ALL
