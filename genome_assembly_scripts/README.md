@@ -57,6 +57,8 @@ It may be worth checking the quality of your merged reads before cleaning your d
 You can check the output files to get a preliminary report.
 
 ## 2 - FastP Processing
+Before moving forward, create a new folder in your working directory named `clean_reads`. This will help you to organize your processed data. If you forget to create this folder, FastP wont be able to write the cleaned fastq files unless you edit the script accordingly.
+
 Now, we will run our merged sequence data through FastP to trim the adapters. In this workflow, we are running FastP from a Conda environment, which can be set up like this:
 
     conda create -p /work/adry/conda/envs/fastp
