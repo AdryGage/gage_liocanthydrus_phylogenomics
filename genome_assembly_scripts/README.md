@@ -112,7 +112,7 @@ Then, we run 3_Fastqc.sh:
     module load conda
 
     conda init
-    source activate /work/adry/conda/envs/fastqc
+    source activate ~/.conda/envs/fastqc
 
     for i in ./clean_reads/*clean*.gz; do fastqc $i; done
 
@@ -141,8 +141,10 @@ FastQC will then generate multiple output files - you can open the HTML files to
 
 Now, we are ready to assemble our genome scaffolds via SPAdes. Again, we are using a Conda environment to achieve this.
 
-    conda create -p /work/adry/conda/envs/spades
-    conda install bioconda::spades
+    conda create -p ~/.conda/envs/spades_4.2.0
+    conda activate ~/.conda/envs/spades_4.2.0
+    conda install bioconda::spades==4.2.0
+    conda deactivate
 
 Start by changing to your directory that contains your merged/cleaned files (FastP output). For each clean fastq file, we will need to run an individual script. Therefore, we will create multiple SPAdes scripts using a template. This can be done by reusing the `sample.list` file we created from before. From that, we can create an array and run a loop to create each corresponding SPAdes script from `8_newSPAdes_template.sh`. This template is as follows:
 
@@ -150,7 +152,7 @@ Start by changing to your directory that contains your merged/cleaned files (Fas
     module load java
 
     conda init
-    source activate /work/adry/conda/envs/SPAdes
+    source activate ~/.conda/envs/spades_4.2.0
 
     ###do an assembly using the adapter-filtered data as input; modify names and paths as needed
     ###Here set to run with reads all in same directory: Can also modify to make directories for each samples' reads if need be
@@ -184,7 +186,14 @@ Additional information for using SPAdes:
     USAGE: -1, -2 = <cleaned, (optionally filtered with bbduk) forward and reverse read files>; -s = <cleaned singleton read file>; -o <output directory> (doesn't have to me pre-made); -t <threads>
 
 ## 9 - Genome Quality Assessment (QUAST)
-Now that we have our genome assemblies, we will want to assess their qualities usint QUAST (https://github.com/ablab/quast). The standard usage for QUAST is as follows:
+Now that we have our genome assemblies, we will want to assess their qualities usint QUAST (https://github.com/ablab/quast). As you may have guessed, we will create another conda environment for this:
+
+    conda create -p ~/.conda/envs/quast_5.3.0
+    conda activate ~/.conda/envs/quast_5.3.0
+    conda install bioconda::quast==5.3.0
+    conda deactivate
+
+The standard usage for QUAST is as follows:
 
     quast	./assemblies/INDIV/scaffolds.fasta \
 	./assemblies/INDIV/contigs.fasta \
@@ -210,7 +219,7 @@ Depending on how you organized your genome assemblies, you can either run the co
 
 Otherwise, edit the `9_Quast.sh` script or `sample.list` as necessary. In our usage, we will want to use the following arguments:
 
-    --large # for genomes > 100 Mbp (runs QUAST-LG). Liocanthydrus genomes are ~250 Mbp.
+    --large # for genomes > 100 Mbp (runs QUAST-LG). Liocanthydrus genomes are 250~300 Mbp.
     -b  # enables BUSCO search (only works on Linux)
     -e  # forces BUSCO to use eukaryotic database and gene finding to use GeneMark-ES
     -f  # enables gene finding (PERFORMANCE WARNING)
@@ -218,16 +227,9 @@ Otherwise, edit the `9_Quast.sh` script or `sample.list` as necessary. In our us
 
 In essence, QUAST will read the scaffolds and contigs for each sample and generate a report. The output directory will contain multiple files - you can open the `report.pdf` file to get a quick overview. The `report.html` and `icarus.html` files will give more comprehensive details, but they may depend on files from the `basic_stats` and `icarus_viewers` sub-directories - it is best to download the entire QUAST output directory and view directly on your local machine to avoid issues.
 
-### *Special Installation Instructions*
-
-If you install QUAST through Bioconda, GeneMark will be excluded due to distribution licensing limitations and must be manually added. `quast_libs/genemark` from https://github.com/ablab/quast can be downloaded and added to `<conda_environment_containing_QUAST_installation>/lib/phython<ver>/site-packages/quast_libs`.
-
-In my usage, I need to edit  the `quast_libs/run_busco.py` file to use the odb12 databases, as found here: https://busco-archive.ezlab.org/data/lineages/
-
-Additionally, for *Liocanthydrus*, it may be appropriate to use a Coleoptera specific database.
-
 ## 10 - Genome Completeness Assessment (BUSCO)
-***NOTE:** While QUAST has built-in BUSCO functionality, it is broken in the current 5.3.0 version due to reliance on the older V9 OrthoDB, which is no longer publicly available. Therefore, we are running BUSCO directly.*
+>[!NOTE] 
+>While QUAST has built-in BUSCO functionality, it is broken in the current 5.3.0 version due to reliance on the older V9 OrthoDB, which is no longer publicly available. Therefore, we are running BUSCO directly.*
 
 To assess the completeness of our assembled genomes, we will run BUSCO.
 
