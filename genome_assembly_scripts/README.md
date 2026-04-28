@@ -61,8 +61,10 @@ Before moving forward, create a new folder in your working directory named `clea
 
 Now, we will run our merged sequence data through FastP to trim the adapters. In this workflow, we are running FastP from a Conda environment, which can be set up like this:
 
-    conda create -p /work/adry/conda/envs/fastp
-    conda install bioconda::fastp
+    conda create -p ~/.conda/envs/fastp_1.0.1
+    conda activate ~/.conda/envs/fastp_1.0.1
+    conda install bioconda::fastp==1.0.1
+    conda deactivate
 
 Next, we will run a script that loops FastP to clean each individual merged FastQ file. **Check your file names:** if you followed the code and scripts in this guide so far, you should have a single "R1" and "R2" `*merged.fastq.gz` file per specimen. If you don't, go back and rename them accordingly.
 
@@ -71,7 +73,7 @@ Let's run the `2_fastp.sh` script, which does this:
     module load conda
 
     conda init
-    source activate /work/adry/conda/envs/fastp
+    source activate ~/.conda/envs/fastp_1.0.1
 
     for i in *R1_merged.fastq.gz; 
     do TRIMNAME1=`echo $i | sed 's/.fastq.gz/.clean.fastq.gz/g'`;
@@ -100,8 +102,10 @@ To get a quick check of our merged and cleaned reads, we will run FastQC to insp
 
 We run FastQC as a Conda environment, which is set up like this:
 
-    conda create -p /work/adry/conda/envs/fastqc
-    conda install bioconda::fastqc
+    conda create -p ~/.conda/envs/fastqc_0.12.1
+    conda activate ~/.conda/envs/fastqc_0.12.1
+    conda install bioconda::fastqc==0.12.1
+    conda deactivate
 
 Then, we run 3_Fastqc.sh:
 
