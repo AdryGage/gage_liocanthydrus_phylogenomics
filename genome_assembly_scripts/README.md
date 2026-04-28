@@ -161,7 +161,7 @@ Start by changing to your directory that contains your merged/cleaned files (Fas
 
 This template should be saved in your current directory, from which we will then run:
 
-    array=`cat sample.list`
+    array=(cat sample.list)
 
 Check your array if needed:
 
@@ -198,14 +198,14 @@ The standard usage for QUAST is as follows:
     quast	./assemblies/INDIV/scaffolds.fasta \
 	./assemblies/INDIV/contigs.fasta \
 	-o INDIV_quast_out \
-	#-t 4
+    --large \
+	-t 64
 
 where `INDIV` should be your specimen ID from previous steps, `-o` specifies the output directory (in this case, in the same working directory). You can view the full list of QUAST arguments here: https://quast.sourceforge.net/docs/manual.html
 
 Depending on how you organized your genome assemblies, you can either run the command above one-by-one for each specimen, or, if you have not ommitted any samples, experienced no errors, and followed this guide to a tee, you can run it in a loop using the `sample.list` like this:
 
-    module load quast
-    module load java
+    module load conda
     
     array=$(cat sample.list)
 
@@ -213,30 +213,27 @@ Depending on how you organized your genome assemblies, you can either run the co
 	quast	./assemblies/"$INDIV"/scaffolds.fasta \
 	./assemblies/"$INDIV"/contigs.fasta \
 	-o "$INDIV"_quast_out \
-    -b  # enables BUSCO - only works on Linux
-    -e  # forces BUSCO to use eukaryotic database
-	#-t 4   # threads, omit to default to 25% CPU usage
+	#-t 64   # threads, omit to default to 25% CPU usage
 
 Otherwise, edit the `9_Quast.sh` script or `sample.list` as necessary. In our usage, we will want to use the following arguments:
 
     --large # for genomes > 100 Mbp (runs QUAST-LG). Liocanthydrus genomes are 250~300 Mbp.
-    -b  # enables BUSCO search (only works on Linux)
-    -e  # forces BUSCO to use eukaryotic database and gene finding to use GeneMark-ES
-    -f  # enables gene finding (PERFORMANCE WARNING)
-    -
 
-In essence, QUAST will read the scaffolds and contigs for each sample and generate a report. The output directory will contain multiple files - you can open the `report.pdf` file to get a quick overview. The `report.html` and `icarus.html` files will give more comprehensive details, but they may depend on files from the `basic_stats` and `icarus_viewers` sub-directories - it is best to download the entire QUAST output directory and view directly on your local machine to avoid issues.
+
+QUAST will read the scaffolds and contigs for each sample and generate a report. The output directory will contain multiple files - you can open the `report.pdf` file to get a quick overview. The `report.html` and `icarus.html` files will give more comprehensive details, but they may depend on files from the `basic_stats` and `icarus_viewers` sub-directories - it is best to download the entire QUAST output directory and view directly on your local machine to avoid issues.
 
 ## 10 - Genome Completeness Assessment (BUSCO)
 >[!NOTE] 
->While QUAST has built-in BUSCO functionality, it is broken in the current 5.3.0 version due to reliance on the older V9 OrthoDB, which is no longer publicly available. Therefore, we are running BUSCO directly.*
+>While QUAST has built-in BUSCO functionality, it is broken in the current 5.3.0 version due to reliance on the older V9 OrthoDB, which is no longer publicly available. Therefore, we are running BUSCO directly.
 
 To assess the completeness of our assembled genomes, we will run BUSCO.
 
 Like other programs, we will create a new Conda environment for BUSCO.
 
-    conda create -p /work/adry/conda/envs/busco_6.0.0
-    conda install bioconda::busco
+    conda create -p ~/.conda/envs/busco_6.0.0
+    conda activate ~/.conda/envs/busco_6.0.0
+    conda install bioconda::busco==6.0.0
+    conda deactivate
 
 As we previously did for SPAdes, we can create individual BUSCO scripts for each sample using the sample.list. We'll start with a template script (`10_busco_template.sh`):
 
