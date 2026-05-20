@@ -4,70 +4,31 @@ A script repository for Adry Gage's phylogenomic workflow on studying *Liocanthy
 ![A cartoon drawing depicting the overall workflow of extracting DNA from specimens, processing DNA through Illumina sequencing, assembling genomes, harvesting UCEs, and creating a phylogeny tree.](assets/images/diagrams/from_genomes_to_trees.png)
 > A very "high quality" diagram showing the overall process of taking genomes from *Liocanthydrus* beetles to construct phylogeny trees.
 
-## Script Usage
-The scripts stored in this repository are designed to work with Louisiana State University's (LSU's) HPC servers, but should work for any Slurm-based system. These scripts depend on many different software packages (credited below), but may call upon older versions. If using these scripts for your own analysis, consider making adjustments to utilize newer software versions. Otherwise, if you are perhaps focused on reproducibility, take note ensure you have the appropriate software versions installed to correspond with the scripts.
+## Who is this for?
+This repository is primarily meant to implement versioning control over the software parameters used to construct a UCE-based phylogeny and infer *Liocanthydrus* species relationships to aid in reproducing results. It is also a convenient template that can be cloned for related phylogenomic studies. With both considerations in mind, this GitHub repository is designed to be generalized enough so that you may deploy its content quickly for your own research (e.g. blank fields in template scripts) while retaining the specific settings used at each step in the workflow. The markdown (.md) files are also included as a quick guide on how to navigate the repository and utilize the software that the scripts call upon, making this a beginner-friendly toolkit for those new to phylogenomics and command-line interfaces (CLIs). 
 
-This workflow is designed primarily for investigating the phylogenomics of Neotropical aquatic beetles, but it is widely applicable to all insects and, at large, any molecular-based systematic study.
-
-### LSU HPC Job Submission
-[SuperMike-III](https://www.hpc.lsu.edu/docs/guides.php?system=SuperMike3.) (dubbed 'mike') has 171 nodes, each with 64 CPU cores and 256 GBs of RAM. The [Slurm directives](https://slurm.schedmd.com/sbatch.html) are thus specified to make full use of each individual node.
-
-All scripts should contain these basic directives:
-
-    #SBATCH -J job
-Job name
-
-    #SBATCH -N 1        
- Number of nodes
-
-    #SBATCH -A allocation
-If you have multiple compute-hour allocations, specify which one you'd like to use for this job. When this is omitted, LSU's HPC will charge hours from your default allocation (check your HPC account settings).
-
-    #SBATCH -n 64       
-Number of cores. This should be equal to 64*'Number of nodes', unless using `single` partition. Jobs submitted to the `single` partition can be allocated to 1-64 cores.
-
-    #SBATCH -c 1
-Number of threads per process
+### What do I need to know before using this?
+There are a few prerequisites that will help you make use of this repository's contents:
+- Knowledge of CLI
+    - 'Terminal' on MacOS, 'Command Prompt' or 'PowerShell' on Windows
+    - Understand basic navigation through CLI
+    - Bash shell - particulary for high-performance computing (HPC)
+- Basic concepts of phylogenomics
+    - Short-read DNA sequencing (such as on an Illumina platform)
+    - Different methods for constructing a phylogeny tree
+        - Maximum likelihood and Bayesian inference
+        - Concatenation and coalescence
     
-    #SBATCH -t 36:00:00
-Time allocation. For LSU's mike, you are limited to 3 days on the `workq` partition. 
-    
-    #SBATCH -p workq
-Specify the server partition you'd like your job to run on. LSU's mike has 3 partitions: `workq` for most jobs, `single` for jobs requiring only a single node, and `bigmem` for jobs require large volumes of RAM. These partitions are identical, except `bigmem` has 2 TB of RAM instead of the standard 256 GBs, and `single` will allow you to specify anywhere from 1-64 CPU cores to be allocated for your job.
 
-    #SBATCH -e ./error_out/_%J_%j.err
-Error log file output. Use %J to copy the job name and %j to copy the job submission number into the the error file name, which allows you to quickly find it. You can also specify a path if you'd like your error log file to go into a specific directory. I prefer to add an underscore `_` at the beginning of the file name to help separate it from other documents in my directory.
+### How do I get started?
+To get started with using this repository, you can simply clone this via git. GitHub provides excellent [documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) on how to achieve this.
 
-    #SBATCH -o ./log_out/_%J_%j.log     
-Log file output. Use %J to copy the job name and %j to copy the job submission number into the log file name, which allows you to quickly find it. You can also specify a path if you'd like your log file to go into a specific directory. I prefer to add an underscore `_` at the beginning of the file name to help separate it from other documents in my directory.
+Once you made your clone (or if you want more details), you can read the ["getting_started.md"](guides/getting_started.md) guide to get all corresponding software set up.
 
+## Citations 
+As this repository depends on several third party packages and software, it is important that you cite all relevant materials appropriately if you make use of them for your project. However, use of this specific repository does not need to be credited - it is simply a template to help you get started.
 
-    #SBATCH --mail-type=ALL
-Specify the type of email notifications. `ALL` for everything, `END` for completed jobs, and `FAIL` for failed jobs. I prefer `ALL` to keep track of overall job progress.
-
-    #SBATCH --mail-user=your@email.com
-Specify the email address to send notifications - you are usually restricted to whatever email your HPC account is set up with.
-
-#### ***Copy-Paste Template***
-Use this as a starting template for creating/editing scripts.
-
-```
-#!/bin/bash
-#SBATCH -J job_name
-#SBATCH -A allocation
-#SBATCH -N 1
-#SBATCH -n 64
-#SBATCH -c 1
-#SBATCH -t 24:00:00
-#SBATCH -p single
-#SBATCH -e _error_%j.err
-#SBATCH -o _log_%j.log
-#SBATCH --mail-type=ALL
-#SBATCH --mail-user=my@email.com
-```
-
-## References 
-Third party packages & software utilized in this project.
+***Third party packages & software utilized in this project are listed below. Cite if used.***
 
 ### Genome Assembly
 
