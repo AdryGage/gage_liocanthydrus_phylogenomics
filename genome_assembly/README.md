@@ -116,28 +116,14 @@ Then, we run 3_Fastqc.sh:
 
     for i in ./clean_reads/*clean*.gz; do fastqc $i; done
 
-**NOTE: Check that your file names are consistent! Otherwise, the script will not work or will need to be edited.**
+>[!TIP]
+>Check that your file names are consistent! Otherwise, the script will not work or will need to be edited.
 
 FastQC will then generate multiple output files - you can open the HTML files to quickly view the reports.
 
-## 4 - Jellyfish (Optional)
-**We are skipping this step**
-
-
-## 5 - Jellyfish Histo (Optional)
-**We are skipping this step**
-
-
-## 6 - Genomescope (Optional)
-**We are skipping this step**
-
-
-## 7 - BBDuk filter (Optional)
-**We are skipping this step**
-
-
-## 8 - SPAdes Genome Assembly
-**NOTE: As SPAdes uses increasingly larger k-mer sizes, more RAM will be required. Read https://ablab.github.io/spades/datatypes.html and plan your HPC usage accordingly. You may also specify shorter k-mer sizes, but this is not advisable.**
+## 4 - SPAdes Genome Assembly
+>[!TIP]
+>As SPAdes uses increasingly larger k-mer sizes, more RAM will be required. Read https://ablab.github.io/spades/datatypes.html and plan your HPC usage accordingly. You may also specify shorter k-mer sizes, but this is not advisable.
 
 Now, we are ready to assemble our genome scaffolds via SPAdes. Again, we are using a Conda environment to achieve this.
 
@@ -185,7 +171,7 @@ Additional information for using SPAdes:
 
     USAGE: -1, -2 = <cleaned, (optionally filtered with bbduk) forward and reverse read files>; -s = <cleaned singleton read file>; -o <output directory> (doesn't have to me pre-made); -t <threads>
 
-## 9 - Genome Quality Assessment (QUAST)
+## 5 - Genome Quality Assessment (QUAST)
 Now that we have our genome assemblies, we will want to assess their qualities usint QUAST (https://github.com/ablab/quast). As you may have guessed, we will create another conda environment for this:
 
     conda create -p ~/.conda/envs/quast_5.3.0
@@ -222,8 +208,8 @@ Otherwise, edit the `9_Quast.sh` script or `sample.list` as necessary. In our us
 
 QUAST will read the scaffolds and contigs for each sample and generate a report. The output directory will contain multiple files - you can open the `report.pdf` file to get a quick overview. The `report.html` and `icarus.html` files will give more comprehensive details, but they may depend on files from the `basic_stats` and `icarus_viewers` sub-directories - it is best to download the entire QUAST output directory and view directly on your local machine to avoid issues.
 
-## 10 - Genome Completeness Assessment (BUSCO)
->[!NOTE] 
+## 6 - Genome Completeness Assessment (BUSCO)
+>[!TIP] 
 >While QUAST has built-in BUSCO functionality, it is broken in the current 5.3.0 version due to reliance on the older V9 OrthoDB, which is no longer publicly available. Therefore, we are running BUSCO directly.
 
 To assess the completeness of our assembled genomes, we will run BUSCO.
@@ -254,3 +240,5 @@ Here, INDIV is our familiar placeholder that will get replaced with the sample n
     -l      # not used here, but this is where you would specify the dataset to use. Run `busco --list-datasets` to see what is available for download.
     -c      # CPU threads. In BUSCO v6.0.0 installed via BioConda, tBLASTn should no longer have a multithreading issue.
 
+>[!NOTE]
+>You may notice from the BUSCO results that your genome assemblies have significant matches for unintended groups (in the case of *Liocanthydrus*, there is significant bacterial contamination). Because our phylogenomic pipeline targets UCEs specific to Noteridae, bacterial contamination should not interfere with our interepretation of phylogenetic signals. However, you may want to consider additional steps to decontaminate your sequence data if you plan on using other phylogenetic markers or other types of analyses.
