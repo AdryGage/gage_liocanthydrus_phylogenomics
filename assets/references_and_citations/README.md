@@ -94,3 +94,30 @@ Weighted-ASTRAL (wASTRAL) as implemented in ASTER:
 >Zhang, C., & Mirarab, S. (2022). Weighting by Gene Tree Uncertainty Improves Accuracy of Quartet-based Species Trees. Molecular Biology and Evolution, 39(12), msac215. https://doi.org/10.1093/molbev/msac215
 
 
+## Relevant papers on *Liocanthydrus*
+
+Reclassification of *Liocanthydrus* as genus, along with synonymous taxa. Diagnostic descriptions of *L. angustus*, *L. octoguttatus*, *L. bicolor*, *L. uniformis*, *L. clayae*, *L. armulatus*, and *L. nanops*.
+
+>Baca, S. M., Gustafson, G. T., Toledo, M., & Miller, K. B. (2014). Revision of the Neotropical burrowing water beetle genus Liocanthydrus Guignot (Coleoptera: Noteridae: Noterinae: Noterini) with the description of two new species. Zootaxa, 3793(2), 231–246. https://doi.org/10.11646/zootaxa.3793.2.3
+
+
+Diagnostic descriptions of *L. zanclus* and *L. mecespilus* along with records of *L. clayae* and *L. bicolor*.
+
+>Guimarães, B. A. C., & Ferreira-Jr, N. (2015). Two new species and new records of Liocanthydrus Guignot (Coleoptera, Noteridae) from Brazil. Zootaxa, 3914(5), 591–596. https://doi.org/10.11646/zootaxa.3914.5.8
+
+
+Diagnostic descriptions of *L. ramosae* and *L. distintus* along with records of *L. armulatus* and *L. clayae*.
+
+>García R., M. M., Camacho M., J. A., & Poleo S., N. C. (2018). El género Liocanthydrus en Venezuela (Coleoptera: Noteridae) con descripción de dos nuevas especies. UNED Research Journal, 10(2), 296–303. https://doi.org/10.22458/urj.v10i2.2161
+
+
+First record of *Liocanthydrus* larvae.
+
+>Urcola, J. I., Toledo, M. E., Baca, S. M., & Michat, M. C. (2025). The genus Liocanthydrus Guignot, 1957 (Coleoptera, Noteridae) in Argentina: New records and larval morphology. ZooKeys, 1231, 371–384. https://doi.org/10.3897/zookeys.1231.144746
+
+
+Molecular phylogenetic study of Noteridae, which includes *L. clayae* (described as *L. bicolor* in paper, but has been re-identifed as *L. clayae* in 2026 by Gage & Baca). This study also involved the development of the Noteridae 3.4kv1 UCE probe set.
+
+>Baca, S. M., Gustafson, G. T., DeRaad, D. A., Alexander, A., Hime, P. M., & Short, A. E. Z. (2025). A shallow‐scale phylogenomics approach reveals repeated patterns of diversification among sympatric lineages of cryptic Neotropical aquatic beetles (Coleoptera: Noteridae). Systematic Entomology, 50(1), 82–101. https://doi.org/10.1111/syen.12643
+
+
