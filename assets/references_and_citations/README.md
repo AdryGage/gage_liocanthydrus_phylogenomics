@@ -1,7 +1,12 @@
 # References
-Here, you can find all references for this repository with a bibliography provided in multiple formats (in progress). If using the resources and documentation provided here for your own research, **you must cite all third-party packages and software used in your pipeline**.
+Here, you can find all references for this repository/project with a bibliography provided in multiple formats (in progress). If using the resources and documentation provided here for your own research, **you must cite all third-party packages and software used in your pipeline**.
+
+## Do I need to cite this repository?
+If you are simply using this GitHub repository as a template to help you get started on your own phylogenomics project, it is not necessary to cite this specific repository. *However*, you must cite the third-party materials referenced by this repository if included in your pipeline.
 
 ## How to cite the *Liocanthydrus* phylogenomics project
+If your project builds upon our work on *Liocanthydrus* and/or related Noteridae, cite the following works as appropriate:
+
 ### Results of *Liocanthydrus* phylogenomic analysis
 TBD (publication in development)
 
@@ -39,9 +44,53 @@ Assessment tool for evaluating genome assembly completeness.
 
 >Fredrik Tegenfeldt, Dmitry Kuznetsov, Mosè Manni, Matthew Berkeley, Evgeny M Zdobnov, Evgenia V Kriventseva, OrthoDB and BUSCO update: annotation of orthologs with wider sampling of genomes, Nucleic Acids Research, Volume 53, Issue D1, 6 January 2025, Pages D516–D522. https://doi.org/10.1093/nar/gkae987
 
-### Phylogeny Construction
+### Genome Skimming
 
 #### [PHYLUCE 1.7.3](https://github.com/faircloth-lab/phyluce)
 UCE phylogenomics software developed by faircloth-lab for use in a variety of applications.
 
 >Faircloth BC. 2015. PHYLUCE is a software package for the analysis of conserved genomic loci. Bioinformatics. https://doi.org/10.1093/bioinformatics/btv646.
+
+### Phylogenetic Tree Reconstruction
+
+#### [IQ-TREE 3.1.2](https://iqtree.github.io/)
+Maximum-likelihood phylogenetic tree construction program.
+
+>Thomas KF Wong, Nhan Ly-Trong, Huaiyan Ren, Piyumal Demotte, Hector Banos, Andrew J Roger, Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W Hahn, Mario dos Reis, Le Sy Vinh, Gavin Huttley, Robert Lanfear, Bui Quang Minh (2026) IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models. Mol. Biol. Eviol.. https://doi.org/10.1093/molbev/msag117
+
+Gene/site concordance factor analyses as implemented in IQ-TREE:
+
+>Yu K Mo, Robert Lanfear, Matthew W Hahn, Bui Quang Minh (2023) Updated site concordance factors minimize effects of homoplasy and taxon sampling. Bioinformatics, 39:btac741. https://doi.org/10.1093/bioinformatics/btac741
+
+Partitioned analysis for multi-gene alignments:
+
+>O. Chernomor, A. von Haeseler, and B.Q. Minh (2016) Terrace aware data structure for phylogenomic inference from supermatrices. Syst. Biol., 65:997-1008. https://doi.org/10.1093/sysbio/syw037
+
+#### [PAUP* 4.0a169](https://paup.phylosolutions.com/)
+'Phylogenetic Analysis and PAUP' software package originally developed by David Swofford.
+
+>Swofford, D. L. 2003. PAUP*. Phylogenetic Analysis Using Parsimony (*and Other Methods).
+Version 4. Sinauer Associates, Sunderland, Massachusetts.
+
+SVD Quartets as implemented in PAUP*
+
+>Chifman, J., & Kubatko, L. (2014). Quartet Inference from SNP Data Under the Coalescent Model. Bioinformatics, 30(23), 3317–3324. https://doi.org/10.1093/bioinformatics/btu530
+
+Node age estimation via qAge, as implented in PAUP*:
+
+>Peng, J., Swofford, D. L., & Kubatko, L. (2022). Estimation of speciation times under the multispecies coalescent. Bioinformatics, 38(23), 5182–5190. https://doi.org/10.1093/bioinformatics/btac679
+
+#### [ASTER 1.25](https://github.com/chaoszhang/ASTER/tree/master)
+Coalescent-based phylogeny tree construction software package centered on the fourth major iteration of the 'Accurate Species Tree ALgorithm' (ASTRAL-IV).
+
+>Zhang, C., Nielsen, R., & Mirarab, S. (2025). ASTER: A Package for Large-Scale Phylogenomic Reconstructions. Molecular Biology and Evolution, 42(8). https://doi.org/10.1093/molbev/msaf172
+
+Coalescent-Aware Species Tree Length Estimation in Substitution-unit (CASTLES) as integrated in ASTRAL-IV:
+
+>Tabatabaee, Y., Zhang, C., Warnow, T., & Mirarab, S. (2023). Phylogenomic branch length estimation using quartets. Bioinformatics, 39(Supplement_1), i185–i193. https://doi.org/10.1093/bioinformatics/btad221
+
+Weighted-ASTRAL (wASTRAL) as implemented in ASTER:
+
+>Zhang, C., & Mirarab, S. (2022). Weighting by Gene Tree Uncertainty Improves Accuracy of Quartet-based Species Trees. Molecular Biology and Evolution, 39(12), msac215. https://doi.org/10.1093/molbev/msac215
+
+
