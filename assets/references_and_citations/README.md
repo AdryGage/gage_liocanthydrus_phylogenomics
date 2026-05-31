@@ -20,7 +20,7 @@ The Noteridae 3.4kv1 probe set has been developed by [Baca et al. (2025)](https:
 ### Genome Assembly
 
 #### [FastQC 0.12.1](https://github.com/s-andrews/fastqc)
-Developed by s-andrews to infer the quality of FastQ files.
+Developed by [Simon Andrews](https://github.com/s-andrews) to infer the quality of FastQ files.
 
 #### [FastP 1.0.1](https://github.com/opengene/fastp)
 A quick tool for processing FastQ files - particularly, short reads.
@@ -47,7 +47,7 @@ Assessment tool for evaluating genome assembly completeness.
 ### Genome Skimming
 
 #### [PHYLUCE 1.7.3](https://github.com/faircloth-lab/phyluce)
-UCE phylogenomics software developed by faircloth-lab for use in a variety of applications.
+UCE phylogenomics software developed by [faircloth-lab](https://www.faircloth-lab.org/) for use in a variety of applications.
 
 >Faircloth BC. 2015. PHYLUCE is a software package for the analysis of conserved genomic loci. Bioinformatics. https://doi.org/10.1093/bioinformatics/btv646.
 
@@ -67,12 +67,12 @@ Partitioned analysis for multi-gene alignments:
 >O. Chernomor, A. von Haeseler, and B.Q. Minh (2016) Terrace aware data structure for phylogenomic inference from supermatrices. Syst. Biol., 65:997-1008. https://doi.org/10.1093/sysbio/syw037
 
 #### [PAUP* 4.0a169](https://paup.phylosolutions.com/)
-'Phylogenetic Analysis and PAUP' software package originally developed by David Swofford.
+'Phylogenetic Analysis Using PAUP' software package originally developed by David Swofford.
 
 >Swofford, D. L. 2003. PAUP*. Phylogenetic Analysis Using Parsimony (*and Other Methods).
 Version 4. Sinauer Associates, Sunderland, Massachusetts.
 
-SVD Quartets as implemented in PAUP*
+SVD Quartets as implemented in PAUP*:
 
 >Chifman, J., & Kubatko, L. (2014). Quartet Inference from SNP Data Under the Coalescent Model. Bioinformatics, 30(23), 3317–3324. https://doi.org/10.1093/bioinformatics/btu530
 
