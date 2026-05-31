@@ -28,4 +28,4 @@ Once you made your clone (or if you want more details), you can read the ["getti
 ## References & Citations 
 As this repository depends on several third party resources, it is important that you cite all relevant materials appropriately if you incorporate them into your own work. If you are simply using this repository as a template to jump-start your own phylogenomics pipeline, it is not necessary to credit us.
 
-***You can find a full list of references in the '[references_and_citations](assets/references_and_citations)' submodule.***
+***You can find a full list of references and relevant details in the '[references_and_citations](assets/references_and_citations)' submodule.***
