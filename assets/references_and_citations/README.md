@@ -60,7 +60,7 @@ Maximum-likelihood phylogenetic tree construction program.
 
 ModelFinder as implemented in IQ-TREE:
 
-Kalyaanamoorthy, S., Minh, B. Q., Wong, T. K. F., von Haeseler, A., & Jermiin, L. S. (2017). ModelFinder: Fast model selection for accurate phylogenetic estimates. Nature Methods, 14(6), 587–589. https://doi.org/10.1038/nmeth.4285
+>Kalyaanamoorthy, S., Minh, B. Q., Wong, T. K. F., von Haeseler, A., & Jermiin, L. S. (2017). ModelFinder: Fast model selection for accurate phylogenetic estimates. Nature Methods, 14(6), 587–589. https://doi.org/10.1038/nmeth.4285
 
 Ultrafast bootstrap (UFBoot) as implemented in IQ-TREE:
 
