@@ -58,6 +58,14 @@ Maximum-likelihood phylogenetic tree construction program.
 
 >Thomas KF Wong, Nhan Ly-Trong, Huaiyan Ren, Piyumal Demotte, Hector Banos, Andrew J Roger, Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W Hahn, Mario dos Reis, Le Sy Vinh, Gavin Huttley, Robert Lanfear, Bui Quang Minh (2026) IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models. Mol. Biol. Eviol.. https://doi.org/10.1093/molbev/msag117
 
+ModelFinder as implemented in IQ-TREE:
+
+Kalyaanamoorthy, S., Minh, B. Q., Wong, T. K. F., von Haeseler, A., & Jermiin, L. S. (2017). ModelFinder: Fast model selection for accurate phylogenetic estimates. Nature Methods, 14(6), 587–589. https://doi.org/10.1038/nmeth.4285
+
+Ultrafast bootstrap (UFBoot) as implemented in IQ-TREE:
+
+>Kalyaanamoorthy, S., Minh, B. Q., Wong, T. K. F., von Haeseler, A., & Jermiin, L. S. (2017). ModelFinder: Fast model selection for accurate phylogenetic estimates. Nature Methods, 14(6), 587–589. https://doi.org/10.1038/nmeth.4285
+
 Gene/site concordance factor analyses as implemented in IQ-TREE:
 
 >Yu K Mo, Robert Lanfear, Matthew W Hahn, Bui Quang Minh (2023) Updated site concordance factors minimize effects of homoplasy and taxon sampling. Bioinformatics, 39:btac741. https://doi.org/10.1093/bioinformatics/btac741
