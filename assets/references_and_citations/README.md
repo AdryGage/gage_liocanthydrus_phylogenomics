@@ -10,7 +10,7 @@ If your project builds upon our work on *Liocanthydrus* and/or related Noteridae
 ### Results of *Liocanthydrus* phylogenomic analysis
 TBD (publication in development)
 
-### Noteridae 3.4kv1 UCE probe set
+### [Noteridae 3.4kv1 UCE probe set](https://github.com/AdryGage/gage_liocanthydrus_phylogenomics/blob/main/genome_skimming/probe_sets/noteridae_3_4kv1.fasta)
 The Noteridae 3.4kv1 probe set has been developed by [Baca et al. (2025)](https://doi.org/10.1111/syen.12643) and is provided here with permission. If you use this UCE probe set for your own research, please cite the following:
 
 >Baca, S. M., Gustafson, G. T., DeRaad, D. A., Alexander, A., Hime, P. M., & Short, A. E. Z. (2025). A shallow‐scale phylogenomics approach reveals repeated patterns of diversification among sympatric lineages of cryptic Neotropical aquatic beetles (Coleoptera: Noteridae). Systematic Entomology, 50(1), 82–101. https://doi.org/10.1111/syen.12643
