@@ -5,7 +5,9 @@ A script repository for Adry Gage's phylogenomic workflow on studying *Liocanthy
 > A very "high quality" diagram showing the overall process of taking genomes from *Liocanthydrus* beetles to construct phylogeny trees.
 
 ## Who is this for?
-This repository is primarily meant to implement versioning control over the software parameters used to construct a UCE-based phylogeny and infer *Liocanthydrus* species relationships to aid in reproducing results. It is also a convenient template that can be cloned for related phylogenomic studies. With both considerations in mind, this GitHub repository is designed to be generalized enough so that you may deploy its content quickly for your own research (e.g. blank fields in template scripts) while retaining the specific settings used at each step in the workflow. The markdown (.md) files are also included as a quick guide on how to navigate the repository and utilize the software that the scripts call upon, making this a beginner-friendly toolkit for those new to phylogenomics and command-line interfaces (CLIs). 
+This repository is primarily meant to implement versioning control over the software parameters used to construct a UCE-based phylogeny and infer *Liocanthydrus* species relationships, thereby promoting data reproducability. It is also a convenient template that can be cloned for related phylogenomic studies. With both considerations in mind, this GitHub repository is designed to be generalized enough so that you may deploy its content quickly for your own research (e.g. blank fields in template scripts) while retaining the specific settings used at each step in the workflow. 
+
+The markdown (.md) files included act as quick guides on how to navigate the repository and utilize the software that the scripts call upon, making this a beginner-friendly toolkit for those new to phylogenomics and command-line interfaces (CLIs). These guides are not meant to provide in-depth explanations for the strengths/weaknesses of the different methods used, but you can learn more about them from their [references](assets/references_and_citations).
 
 ### What do I need to know before using this?
 There are a few prerequisites that will help you make use of this repository's contents:
@@ -14,16 +16,16 @@ There are a few prerequisites that will help you make use of this repository's c
     - Understand basic navigation through CLI
     - Bash shell - particulary for high-performance computing (HPC)
 - Basic concepts of phylogenomics
-    - Short-read DNA sequencing (such as on an Illumina platform)
+    - Short-read DNA sequencing (Illumina platform)
     - Different methods for constructing a phylogeny tree
         - Maximum likelihood and Bayesian inference
         - Concatenation and coalescence
     
 
 ### How do I get started?
-To get started with using this repository, you can simply clone this via git. GitHub provides excellent [documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) on how to achieve this.
+To get started with using this repository, you can simply clone this via git. GitHub provides excellent [documentation](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) on how to do this.
 
-Once you made your clone (or if you want more details), you can read the ["getting_started.md"](guides/getting_started.md) guide to get all corresponding software set up.
+Once you made your clone (or if you want more details), you can read the ["getting_started.md"](guides/getting_started.md) guide to get all corresponding software set up (in progress).
 
 ## References & Citations 
 As this repository depends on several third party resources, it is important that you cite all relevant materials appropriately if you incorporate them into your own work. If you are simply using this repository as a template to jump-start your own phylogenomics pipeline, it is not necessary to credit us.
