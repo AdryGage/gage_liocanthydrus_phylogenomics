@@ -1,6 +1,8 @@
 # References
 Here, you can find all references for this repository/project with a bibliography provided in multiple formats (in progress). If using the resources and documentation provided here for your own research, **you must cite all third-party packages and software used in your pipeline**.
 
+**[BibTex for all references](assets/references_and_citations/all_references.bib)**
+
 ## Do I need to cite this repository?
 If you are simply using this GitHub repository as a template to help you get started on your own phylogenomics project, it is not necessary to cite this specific repository. *However*, you must cite the third-party materials referenced by this repository if included in your pipeline.
 
@@ -8,16 +10,11 @@ If you are simply using this GitHub repository as a template to help you get sta
 If your project builds upon our work on *Liocanthydrus* and/or related Noteridae, cite the following works as appropriate:
 
 ### Results of *Liocanthydrus* phylogenomic analysis
-TBD (publication in development)
-
-### Noteridae 3.4kv1 UCE probe set
-The [Noteridae 3.4kv1 probe set](https://github.com/AdryGage/gage_liocanthydrus_phylogenomics/blob/main/genome_skimming/probe_sets/noteridae_3_4kv1.fasta) has been developed by [Baca et al. (2025)](https://doi.org/10.1111/syen.12643) and is provided here with permission. If you use this UCE probe set for your own research, please cite the following:
-
->Baca, S. M., Gustafson, G. T., DeRaad, D. A., Alexander, A., Hime, P. M., & Short, A. E. Z. (2025). A shallow‐scale phylogenomics approach reveals repeated patterns of diversification among sympatric lineages of cryptic Neotropical aquatic beetles (Coleoptera: Noteridae). Systematic Entomology, 50(1), 82–101. https://doi.org/10.1111/syen.12643
+Adry J. Gage, Jeremy M. Brown, Stephen M. Baca (2026). *Manuscript in preparation*.
 
 
 ## Third-party resources
-### Genome Assembly
+### Genome Assembly ([BibTex](assets/references_and_citations/genome_assembly.bib))
 
 #### [FastQC 0.12.1](https://github.com/s-andrews/fastqc)
 Developed by [Simon Andrews](https://github.com/s-andrews) to infer the quality of FastQ files.
@@ -44,14 +41,19 @@ Assessment tool for evaluating genome assembly completeness.
 
 >Fredrik Tegenfeldt, Dmitry Kuznetsov, Mosè Manni, Matthew Berkeley, Evgeny M Zdobnov, Evgenia V Kriventseva, OrthoDB and BUSCO update: annotation of orthologs with wider sampling of genomes, Nucleic Acids Research, Volume 53, Issue D1, 6 January 2025, Pages D516–D522. https://doi.org/10.1093/nar/gkae987
 
-### Genome Skimming
+### Genome Skimming ([BibTex](assets/references_and_citations/genome_skimming.bib))
 
 #### [PHYLUCE 1.7.3](https://github.com/faircloth-lab/phyluce)
 UCE phylogenomics software developed by [faircloth-lab](https://www.faircloth-lab.org/) for use in a variety of applications.
 
 >Faircloth BC. 2015. PHYLUCE is a software package for the analysis of conserved genomic loci. Bioinformatics. https://doi.org/10.1093/bioinformatics/btv646.
 
-### Phylogenetic Tree Reconstruction
+#### [Noteridae 3.4kv1 UCE probe set](https://github.com/AdryGage/gage_liocanthydrus_phylogenomics/blob/main/genome_skimming/probe_sets/noteridae_3_4kv1.fasta)
+The [Noteridae 3.4kv1 probe set](https://github.com/AdryGage/gage_liocanthydrus_phylogenomics/blob/main/genome_skimming/probe_sets/noteridae_3_4kv1.fasta) has been developed by [Baca et al. (2025)](https://doi.org/10.1111/syen.12643) and is provided here with permission. If you use this UCE probe set for your own research, please cite the following:
+
+>Baca, S. M., Gustafson, G. T., DeRaad, D. A., Alexander, A., Hime, P. M., & Short, A. E. Z. (2025). A shallow‐scale phylogenomics approach reveals repeated patterns of diversification among sympatric lineages of cryptic Neotropical aquatic beetles (Coleoptera: Noteridae). Systematic Entomology, 50(1), 82–101. https://doi.org/10.1111/syen.12643
+
+### Phylogenetic Tree Reconstruction ([BibTex](assets/references_and_citations/tree_building.bib))
 
 #### [IQ-TREE 3.1.2](https://iqtree.github.io/)
 Maximum-likelihood phylogenetic tree construction program.
@@ -64,7 +66,7 @@ ModelFinder as implemented in IQ-TREE:
 
 Ultrafast bootstrap (UFBoot) as implemented in IQ-TREE:
 
->Kalyaanamoorthy, S., Minh, B. Q., Wong, T. K. F., von Haeseler, A., & Jermiin, L. S. (2017). ModelFinder: Fast model selection for accurate phylogenetic estimates. Nature Methods, 14(6), 587–589. https://doi.org/10.1038/nmeth.4285
+>Hoang, D. T., Chernomor, O., von Haeseler, A., Minh, B. Q., & Vinh, L. S. (2018). UFBoot2: Improving the Ultrafast Bootstrap Approximation. Molecular Biology and Evolution, 35(2), 518–522. https://doi.org/10.1093/molbev/msx281
 
 Gene/site concordance factor analyses as implemented in IQ-TREE:
 
@@ -102,7 +104,7 @@ Weighted-ASTRAL (wASTRAL) as implemented in ASTER:
 >Zhang, C., & Mirarab, S. (2022). Weighting by Gene Tree Uncertainty Improves Accuracy of Quartet-based Species Trees. Molecular Biology and Evolution, 39(12), msac215. https://doi.org/10.1093/molbev/msac215
 
 
-## Relevant papers on *Liocanthydrus*
+## Relevant papers on *Liocanthydrus* ([BibTex](assets/references_and_citations/liocanthydrus_papers.bib))
 
 Reclassification of *Liocanthydrus* as genus, along with synonymous taxa. Diagnostic descriptions of *L. angustus*, *L. octoguttatus*, *L. bicolor*, *L. uniformis*, *L. clayae*, *L. armulatus*, and *L. nanops*.
 
