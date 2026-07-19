@@ -1,3 +1,4 @@
+#!/bin/bash
 #SBATCH -J 4_uce_match_count
 #SBATCH -A allocation
 #SBATCH -N 1

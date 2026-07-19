@@ -1,3 +1,4 @@
+#!/bin/bash
 #SBATCH -J 5_uce_harvest
 #SBATCH -A allocation
 #SBATCH -N 1

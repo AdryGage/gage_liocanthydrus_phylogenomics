@@ -1,3 +1,4 @@
+#!/bin/bash
 #SBATCH -J 6_uce_alignment
 #SBATCH -A allocation
 #SBATCH -N 1

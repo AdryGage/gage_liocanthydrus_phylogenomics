@@ -1,3 +1,4 @@
+#!/bin/bash
 #SBATCH -J 3_uce_match_slicetoprobe
 #SBATCH -A allocation
 #SBATCH -N 1

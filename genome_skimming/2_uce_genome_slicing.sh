@@ -1,3 +1,4 @@
+#!/bin/bash
 #SBATCH -J 2_uce_genome_slicing
 #SBATCH -A allocation
 #SBATCH -N 1
