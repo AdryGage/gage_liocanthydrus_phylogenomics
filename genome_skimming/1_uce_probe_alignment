@@ -23,5 +23,5 @@ phyluce_probe_run_multiple_lastzs_sqlite \
     --genome-base-path ./assemblies/ \
     --identity 60 \
     --coverage 50 \
-    --probefile ./probe_set.fasta \
+    --probefile ./probe_sets/noteridae_3_4kv1.fasta \
     --cores 64

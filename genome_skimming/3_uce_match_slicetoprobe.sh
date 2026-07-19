@@ -16,6 +16,6 @@ source activate ~/.conda/envs/phyluce-1.7.3
 
 phyluce_assembly_match_contigs_to_probes \
 	--contigs ./sample-genomeskim-fasta \
-	--probes ./probe_set.fasta \
+	--probes ./probe_sets/noteridae_3_4kv1.fasta \
 	--output matched_sample_uce \
 	--min-identity 80 \
