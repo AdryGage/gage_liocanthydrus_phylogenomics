@@ -14,10 +14,13 @@
 module load conda
 source activate ~/.conda/envs/phyluce-1.7.3
 
+# Update 'taxa' to mach number of individuals
+
+# 'no-trim' for use in gblocks (output must be fasta)
 phyluce_align_seqcap_align \
     --input sample-incomplete_NoRogue.fasta \
     --output Combined_incomplete_mafft_notrim_fasta \
-    --taxa 29 \
+    --taxa 38 \
     --aligner mafft \
     --cores 64 \
     --no-trim \
@@ -25,4 +28,13 @@ phyluce_align_seqcap_align \
     --output-format fasta \
     --log-path log_out
 
-###no-trim option: only use with gblocks. Delete if not usign gblocks.
+# MAFFT alignment and edge trimming
+phyluce_align_seqcap_align \
+    --input sample-incomplete_NoRogue.fasta \
+    --output Combined_incomplete_mafft_trimmed_nexus \
+    --taxa 38 \
+    --aligner mafft \
+    --cores 64 \
+    --incomplete-matrix \
+    --output-format nexus \
+    --log-path log_out
