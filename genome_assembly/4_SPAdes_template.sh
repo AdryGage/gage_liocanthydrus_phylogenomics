@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH -J 8_SPAdes_INDIV
+#SBATCH -J 4_SPAdes_INDIV
 #SBATCH -A allocation
 #SBATCH -N 1
 #SBATCH -n 64
 #SBATCH -c 1
 #SBATCH -t 36:00:00
 #SBATCH -p bigmem
-#SBATCH -e ./error_out/_%J_%j.err
-#SBATCH -o ./log_out/_%J_%j.log
+#SBATCH -e ./error_out/_4_%j.err
+#SBATCH -o ./log_out/_4_%j.log
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=my@email.com
 

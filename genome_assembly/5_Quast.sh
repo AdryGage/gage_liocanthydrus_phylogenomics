@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH -J 9_quast
+#SBATCH -J 5_quast
 #SBATCH -A allocation
 #SBATCH -N 1
 #SBATCH -n 64
 #SBATCH -c 1
 #SBATCH -t 24:00:00
 #SBATCH -p workq
-#SBATCH -e ./error_out/_%J_%j.err
-#SBATCH -o ./log_out/_%J_%j.log
+#SBATCH -e ./error_out/_5_%j.err
+#SBATCH -o ./log_out/_5_%j.log
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=my@email.com
 
