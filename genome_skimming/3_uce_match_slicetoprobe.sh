@@ -6,8 +6,8 @@
 #SBATCH -c 1
 #SBATCH -t 24:00:00
 #SBATCH -p workq
-#SBATCH -e ./error_out/_%J_%j.err
-#SBATCH -o ./log_out/_%J_%j.log
+#SBATCH -e ./error_out/_3_%j.err
+#SBATCH -o ./log_out/_3_%j.log
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=my@email.com
 
