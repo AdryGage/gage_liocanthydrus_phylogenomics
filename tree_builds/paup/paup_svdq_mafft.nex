@@ -1,0 +1,27 @@
+#NEXUS
+
+execute ~/genome_skimming/concat/Concat_mafft_90perc_nexus/Concat_mafft_90perc_formatted.nexus;
+
+Begin paup;
+    [Use taxpartition to force a species-level tree. Otherwise, exclude the partitioning.]
+    [taxpartition liocanthydrus_species =
+        L._angustus : BLTE00057 BLTE00085,
+        L._armulatus : BLTE00087,
+        L._bicolor : BLTE00051 BLTE00052 BLTE00053 BLTE00054 BLTE00058 BLTE00059 BLTE00060 BLTE00074 BLTE00075 BLTE00078 BLTE00079 BLTE00080 BLTE00101 BLTE00102 BLTE00104 BLTE00105 BLTE00106,
+        L._clayae : BLTE00071 BLTE00072 BLTE00073 BLTE00076 BLTE00077 BLTE00081 BLTE00082 BLTE00083 BLTE00084 SLE1547 BLTE00103,
+        L._mecespilus : BLTE00099,
+        L._octoguttatus : BLTE00061 BLTE00062,
+        L._uniformis : BLTE00098,
+        L._zanclus : BLTE00055 BLTE00056,
+        T._wheeleri : SLE827;]
+
+    outgroup SLE827/only;
+
+    svdq [taxpartition=liocanthydrus_species] showScores=no seed=12345 loci=combined bootstrap=multilocus nrep=100 treefile=svdq_100rep_mafft.tre;
+    rootTrees rootMethod=outgroup;
+    savetrees file=svdq_100rep_mafft.tre;
+
+    [speciestree taxpartition=liocanthydrus_species;]
+    [rootTrees rootMethod=outgroup;]
+    qage patProb=exactJC [taxpartition=liocanthydrus_species] loci=combined bootstrap=multilocus outUnits=both treefile=svdq_100rep_mafft_qage_jc.tre;
+end;
